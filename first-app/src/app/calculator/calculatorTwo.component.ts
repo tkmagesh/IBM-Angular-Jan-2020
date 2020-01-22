@@ -15,7 +15,7 @@ import { CalculatorModel } from './CalculatorModel';
         </select>
         <input type="number" (change)="model.n2 = $event.target.valueAsNumber">
         <input type="button" value="Calculate" (click)="model[selectOperator.value]()">
-        <div>{{model.result}}</div>
+        <div>{{model.result | currency}}</div>
     `
 })
 export class CalculatorTwoComponent{
