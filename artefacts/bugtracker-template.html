@@ -13,22 +13,22 @@ Treat the bug as a "string" for usecase 1 & 2
 (done) 6. Improvise bug display
 (done) 7. Sort the bugs
 (done) 8. Persist the bugs in the localStorage
-window.localStorage
-====================
-    * key/value store
-    * key has to be unique
-    * both key and value must be strings
-        (use JSON.stringify & JSON.parse for serialization and deserialization)
-    * ~10MB storage limit
-    * Same Origin Policy
-    * APIs
-    ------
-        - setItem(key, value)
-        - getItem(key) => value
-        - removeItem(key)
-        - key(index) => key at index
-        - clear()
-        - length
+    window.localStorage
+    ====================
+        * key/value store
+        * key has to be unique
+        * both key and value must be strings
+            (use JSON.stringify & JSON.parse for serialization and deserialization)
+        * ~10MB storage limit
+        * Same Origin Policy
+        * APIs
+        ------
+            - setItem(key, value)
+            - getItem(key) => value
+            - removeItem(key)
+            - key(index) => key at index
+            - clear()
+            - length
 
 (done) 9. Display 'created at' for each bug
 10. Persist the bugs in the server
