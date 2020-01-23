@@ -28,6 +28,7 @@ export class BugTrackerComponent implements OnInit{
         this.bugs.push({ name: 'User actions not recognized', isClosed: true });
         this.bugs.push({ name: 'Data integrity checks failed', isClosed: false });
         this.bugs.push({ name: 'Application not responding', isClosed: true }); */
+        this.bugs = this.bugOperations.getAll();
     }
 
     onNewBugAdded(bug : Bug) : void{
@@ -40,7 +41,12 @@ export class BugTrackerComponent implements OnInit{
     }
 
     onRemoveClosedClick(): void {
+        
+        this.bugs
+            .filter(bug => bug.isClosed)
+            .forEach(closedBug => this.bugOperations.remove(closedBug));
         this.bugs = this.bugs.filter(bug => !bug.isClosed);
+        
     }
 
     
