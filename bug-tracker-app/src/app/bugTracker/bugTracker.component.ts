@@ -11,7 +11,7 @@ export class BugTrackerComponent implements OnInit{
     bugSortBy : string = 'name';
     bugSortDescending : boolean = false;
     
-    newBugName : string = '';
+    
 
     /* bugOperations : BugOperationsService ;
 
@@ -30,9 +30,8 @@ export class BugTrackerComponent implements OnInit{
         this.bugs.push({ name: 'Application not responding', isClosed: true });
     }
 
-    onAddNewClick(bugName : string){
-        const newBug = this.bugOperations.createNew(bugName);    
-        this.bugs = [...this.bugs, newBug];
+    onNewBugAdded(bug : Bug) : void{
+        this.bugs = [...this.bugs, bug];
     }
 
     onBugNameClick(bugToToggle : Bug) : void {
@@ -44,7 +43,5 @@ export class BugTrackerComponent implements OnInit{
         this.bugs = this.bugs.filter(bug => !bug.isClosed);
     }
 
-    getClosedCount() : number {
-        return this.bugs.reduce((result, bug) => bug.isClosed ? ++result : result, 0);
-    }
+    
 }
