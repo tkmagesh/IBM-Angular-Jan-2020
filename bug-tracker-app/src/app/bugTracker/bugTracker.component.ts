@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Bug } from './models/Bug';
 import { BugOperationsService } from "./services/bugOperations.service";
+import { forkJoin } from "rxjs";
 
 @Component({
     selector : 'app-bug-tracker',
@@ -10,25 +11,16 @@ export class BugTrackerComponent implements OnInit{
     bugs : Bug[] = [];
     bugSortBy : string = 'name';
     bugSortDescending : boolean = false;
-    
-    
-
-    /* bugOperations : BugOperationsService ;
-
-    constructor(operations : BugOperationsService){
-        this.bugOperations = operations;
-    } */
-
+  
     constructor(private bugOperations : BugOperationsService){
 
     }
 
     ngOnInit(){
-        /* this.bugs.push({ name : 'Server communicatioin failure', isClosed : false});
-        this.bugs.push({ name: 'User actions not recognized', isClosed: true });
-        this.bugs.push({ name: 'Data integrity checks failed', isClosed: false });
-        this.bugs.push({ name: 'Application not responding', isClosed: true }); */
-        this.bugs = this.bugOperations.getAll();
+        //this.bugs = this.bugOperations.getAll();
+        this.bugOperations
+            .getAll()
+            .subscribe(bugs => this.bugs = bugs);
     }
 
     onNewBugAdded(bug : Bug) : void{
@@ -36,16 +28,18 @@ export class BugTrackerComponent implements OnInit{
     }
 
     onBugNameClick(bugToToggle : Bug) : void {
-        const toggledBug = this.bugOperations.toggle(bugToToggle);
-        this.bugs = this.bugs.map(bug => bug === bugToToggle ? toggledBug : bug);
+        this.bugOperations
+            .toggle(bugToToggle)
+            .subscribe(toggledBug => this.bugs = this.bugs.map(bug => bug === bugToToggle ? toggledBug : bug));
     }
 
     onRemoveClosedClick(): void {
         
-        this.bugs
-            .filter(bug => bug.isClosed)
-            .forEach(closedBug => this.bugOperations.remove(closedBug));
-        this.bugs = this.bugs.filter(bug => !bug.isClosed);
+        const allRemoveBugObservables = this.bugs
+                .filter(bug => bug.isClosed)
+                .map(closedBug => this.bugOperations.remove(closedBug));
+        forkJoin(allRemoveBugObservables)
+            .subscribe(() => this.bugs = this.bugs.filter(bug => !bug.isClosed));
         
     }
 
