@@ -24,10 +24,10 @@ export class BugTrackerComponent implements OnInit{
     }
 
     ngOnInit(){
-        this.bugs.push({ name : 'Server communicatioin failure', isClosed : false});
+        /* this.bugs.push({ name : 'Server communicatioin failure', isClosed : false});
         this.bugs.push({ name: 'User actions not recognized', isClosed: true });
         this.bugs.push({ name: 'Data integrity checks failed', isClosed: false });
-        this.bugs.push({ name: 'Application not responding', isClosed: true });
+        this.bugs.push({ name: 'Application not responding', isClosed: true }); */
     }
 
     onNewBugAdded(bug : Bug) : void{

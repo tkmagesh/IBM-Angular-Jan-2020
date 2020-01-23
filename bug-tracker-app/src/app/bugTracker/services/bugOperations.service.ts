@@ -3,8 +3,10 @@ import { Bug } from '../models/Bug';
 export class BugOperationsService{
     createNew(bugName : string) : Bug{
         const newBug: Bug = {
+            id : 0,
             name: bugName,
-            isClosed: false
+            isClosed: false,
+            createdAt : new Date()
         };
         return newBug;
     }
