@@ -1,0 +1,32 @@
+{
+  "bugs": [
+    {
+      "id": 6,
+      "name": "Bug - 4",
+      "isClosed": false,
+      "createdAt": "2019-11-08T12:02:48.486Z"
+    },
+    {
+      "id": 7,
+      "name": "Bug - 1",
+      "isClosed": false,
+      "createdAt": "2019-11-08T12:02:59.907Z"
+    },
+    {
+      "id": 8,
+      "name": "Another new bug",
+      "isClosed": false,
+      "createdAt": "2019-11-08T12:32:25.164Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Bug Tracker"
+    },
+    {
+      "id": 2,
+      "name": "Payroll Master"
+    }
+  ]
+}
