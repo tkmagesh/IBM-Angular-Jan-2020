@@ -11,6 +11,8 @@ export class BugTrackerComponent implements OnInit{
     bugSortBy : string = 'name';
     bugSortDescending : boolean = false;
     
+    newBugName : string = '';
+
     /* bugOperations : BugOperationsService ;
 
     constructor(operations : BugOperationsService){
@@ -30,11 +32,12 @@ export class BugTrackerComponent implements OnInit{
 
     onAddNewClick(bugName : string){
         const newBug = this.bugOperations.createNew(bugName);    
-        this.bugs.push(newBug);
+        this.bugs = [...this.bugs, newBug];
     }
 
-    onBugNameClick(bug : Bug) : void {
-        this.bugOperations.toggle(bug);
+    onBugNameClick(bugToToggle : Bug) : void {
+        const toggledBug = this.bugOperations.toggle(bugToToggle);
+        this.bugs = this.bugs.map(bug => bug === bugToToggle ? toggledBug : bug);
     }
 
     onRemoveClosedClick(): void {
